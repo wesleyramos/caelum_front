@@ -20,7 +20,7 @@
         </button>
 
         <!-- newEmail--active -->
-        <form (submit)="handleNewEmail($event)" action="#" class="newEmail cmailForm"
+        <form #formEmail="ngForm" (ngSubmit)="handleNewEmail(formEmail)" action="#" class="newEmail cmailForm"
           [ngClass]="{'newEmail--active': isNewEmailFormOpen}">
           <div class="newEmail__card demo-card-wide mdl-card mdl-shadow--2dp">
             <div class="newEmail__titleArea mdl-card__title">
@@ -30,9 +30,9 @@
               <!-- Form Fields -->
               <!-- [Para] -->
               <div class="cmailInputForm">
-                <div class="mdl-textfield mdl-textfield--floating-label">
-                  <input name="para" placeholder=" " required="" type="email" id="para" class="mdl-textfield__input"
-                    (input)="email.destinatario = $event.target.value" [value]="email.destinatario">
+                <div class="mdl-textfield mdl-textfield--floating-label" [ngClass]="{'is-invalid': destinatario.invalid && destinatario.touched}">
+                  <input #destinatario="ngModel" email [(ngModel)]="email.destinatario" name="para" placeholder=" " required
+                    type="email" id="para" class="mdl-textfield__input">
                   <span class="mdl-textfield__error">Informar um email é obrigatório!</span>
                   <label class="mdl-textfield__label" for="para">Para: </label>
                   <span class="mdl-textfield__formline"></span>
@@ -41,9 +41,9 @@
 
               <!-- [Assunto] -->
               <div class="cmailInputForm">
-                <div class="mdl-textfield mdl-textfield--floating-label">
-                  <input name="assunto" placeholder=" " required="" type="text" id="assunto"
-                    class="mdl-textfield__input" (input)="email.assunto = $event.target.value" [value]="email.assunto">
+                <div class="mdl-textfield mdl-textfield--floating-label" [ngClass]="{'is-invalid': assunto.invalid && assunto.touched}">
+                  <input #assunto="ngModel" [(ngModel)]="email.assunto" required type="assunto" name="assunto"
+                    id="assunto" class="mdl-textfield__input">
                   <span class="mdl-textfield__error">Informar um assunto é obrigatório!</span>
                   <label class="mdl-textfield__label" for="assunto">Assunto: </label>
                   <span class="mdl-textfield__formline"></span>
@@ -52,9 +52,9 @@
 
               <!-- [Conteúdo] -->
               <div class="cmailInputForm">
-                <div class="mdl-textfield mdl-textfield--floating-label">
-                  <textarea class="mdl-textfield__input" rows="3" id="conteudo" placeholder=" "
-                    (input)="email.conteudo = $event.target.value" [value]="email.conteudo"></textarea>
+                <div class="mdl-textfield mdl-textfield--floating-label" [ngClass]="{'is-invalid': conteudo.invalid && conteudo.touched}">
+                  <textarea #conteudo="ngModel" [(ngModel)]="email.conteudo" name="conteudo"
+                    class="mdl-textfield__input" id="conteudo"></textarea>
                   <span class="mdl-textfield__error">Informar um conteúdo é obrigatório!</span>
                   <label class="mdl-textfield__label" for="conteudo">Conteúdo: </label>
                   <span class="mdl-textfield__formline"></span>

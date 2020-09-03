@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CadastroComponent } from './cadastro.component';
 import { SharedComponentsModule } from '../../components/shared-components.module';
 import { CmailFormModule } from '../../components/cmail-form.module';
+import { CadastroRoutingModule } from '../cadastro/cadastro-routing.module';
+import { CaixaDeEntradaRoutingModule } from '../caixa-de-entrada/caixa-de-entrada-routing.module';
+import { LoginRoutingModule } from '../login/login-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { CmailFormModule } from '../../components/cmail-form.module';
     ReactiveFormsModule,
     HttpClientModule,
     SharedComponentsModule,
-    CmailFormModule
+    CmailFormModule,
+    CadastroRoutingModule,
+    LoginRoutingModule,
+    CaixaDeEntradaRoutingModule
   ]
 })
 export class CadastroModule { }

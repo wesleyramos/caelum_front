@@ -10,7 +10,8 @@ import { CmailFormFieldDirective } from './cmail-form-group/cmail-form-field.dir
     CommonModule
   ],
   exports: [
-    CmailFormGroupComponent, CmailFormFieldDirective
+    CmailFormGroupComponent, 
+    CmailFormFieldDirective
   ]
 })
 export class CmailFormModule { }

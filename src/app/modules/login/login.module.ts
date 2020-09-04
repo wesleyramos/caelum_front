@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { CmailFormModule } from 'src/app/components/cmail-form.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login.component';
+import { LoginService } from 'src/app/services/login.service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -14,6 +15,9 @@ import { LoginComponent } from './login.component';
     LoginRoutingModule,
     CmailFormModule,
     HttpClientModule
+  ],
+  providers: [
+    LoginService
   ]
 })
 export class LoginModule { }

@@ -34,6 +34,7 @@ export class CadastroComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log(`Cadastrado com sucesso`);
+            console.log(userData);
             this.formCadastro.reset()
             setTimeout(() => {
               this.roteador.navigate(['']);

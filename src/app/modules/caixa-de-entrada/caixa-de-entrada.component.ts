@@ -39,6 +39,23 @@ export class CaixaDeEntradaComponent {
       )
   }
 
+  //recebe emailID no segundo parâmetro
+  handleRemoveEmail(eventoVaiRemover, emailId) {
+    console.log(eventoVaiRemover);
+    if (eventoVaiRemover.status === 'removing') {
+      this.emailService
+        .deletar(emailId)
+        .subscribe(
+          res => {
+            console.log(res);
+            //remove o email da lista de emails depois dela ser apagada da API
+            this.emailList = this.emailList.filter(email => email.id != emailId);
+          }
+          , err => console.error(err)
+        )
+    }
+  }
+
   get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;
   }

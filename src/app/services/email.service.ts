@@ -7,9 +7,9 @@ import { map } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class EmailService {
-    
+
     api = 'http://localhost:3200/emails';
-    
+
     cabecalho = new HttpHeaders({ 'Authorization': localStorage.getItem('cmail-token') });
 
     constructor(private http: HttpClient) { }
@@ -28,7 +28,8 @@ export class EmailService {
                         return new Email({
                             destinatario: emailApi.to,
                             assunto: emailApi.subject,
-                            conteudo: emailApi.content
+                            conteudo: emailApi.content,
+                            dataDeEnvio: emailApi.created_at
                         })
                     }
                 ))

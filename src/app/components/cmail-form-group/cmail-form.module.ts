@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CmailFormGroupComponent } from './cmail-form-group/cmail-form-group.component';
-import { CmailFormFieldDirective } from './cmail-form-group/cmail-form-field.directive';
+import { CmailFormGroupComponent } from './cmail-form-group.component';
+import { CmailFormFieldDirective } from './cmail-form-field.directive';
 
 @NgModule({
   declarations: [CmailFormGroupComponent, CmailFormFieldDirective

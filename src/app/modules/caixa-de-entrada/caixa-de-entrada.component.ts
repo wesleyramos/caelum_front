@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PageDataService } from '../../services/page.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -20,23 +21,17 @@ export class CaixaDeEntradaComponent {
   }
   mensagemErro = '';
 
-  constructor(private emailService: EmailService) { }
-
+  constructor(private emailService: EmailService, private pageDataService: PageDataService) { }
   ngOnInit() {
     this.emailService
       .listar()
       .subscribe(
-        //next
-        lista => {
+        (lista) => {
           this.emailList = lista;
-        },
-        //erro
-        (responseError: HttpErrorResponse) => {
-          this.mensagemErro = responseError.message;
-          console.log("Deu ruim");
-        },
-        //complete (finally)
-      )
+        });
+    // Definimos o titulo da página.
+    this.pageDataService
+      .defineTitulo('Caixa de entrada - CMail');
   }
 
   //recebe emailID no segundo parâmetro

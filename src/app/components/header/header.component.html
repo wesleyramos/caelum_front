@@ -5,7 +5,7 @@
   </button>
 
   <div class="mdl-layout__header-row">
-    <span class="headerGlobal__title mdl-layout-title">Título da página atual</span>
+    <span class="headerGlobal__title mdl-layout-title">{{tituloDaPagina}}</span>
 
     <div class="mdl-layout-spacer"></div>
 
@@ -25,7 +25,7 @@
   </div>
 </header>
 <section class="headerGlobal__menuArea mdl-layout__drawer" [ngClass]="{ 'headerGlobal__menuArea--active': isMenuOpen }">
-  <span class="mdl-layout-title">
+  <span class="headerGlobal__title mdl-layout-title">{{tituloDaPagina}}
     <img class="headerGlobal__logo" src="assets/img/logo.svg" alt="CMail">
   </span>
 

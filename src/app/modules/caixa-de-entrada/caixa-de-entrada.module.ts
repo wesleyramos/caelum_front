@@ -7,9 +7,10 @@ import { SharedComponentsModule } from '../../components/shared-components.modul
 import { CaixaDeEntradaRoutingModule } from './caixa-de-entrada-routing.module';
 import { EmailService } from 'src/app/services/email.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FiltroPorAssunto } from '../caixa-de-entrada/filtro-por-assunto.pipe';
 
 @NgModule({
-  declarations: [CaixaDeEntradaComponent],
+  declarations: [CaixaDeEntradaComponent, FiltroPorAssunto],
   imports: [
     CommonModule,
     SharedComponentsModule,

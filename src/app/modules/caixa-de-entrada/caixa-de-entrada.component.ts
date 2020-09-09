@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PageDataService } from '../../services/page.service';
+import { HeaderDataService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -20,9 +21,13 @@ export class CaixaDeEntradaComponent {
     conteudo: ''
   }
   mensagemErro = '';
+  termoParaFiltro: string = '';
 
-  constructor(private emailService: EmailService, private pageDataService: PageDataService) { }
+  constructor(private emailService: EmailService, private pageDataService: PageDataService, private headerService: HeaderDataService) { }
   ngOnInit() {
+    this.headerService
+      .valorDoFiltro
+      .subscribe(novoValor => this.termoParaFiltro = novoValor)
     this.emailService
       .listar()
       .subscribe(
@@ -32,6 +37,14 @@ export class CaixaDeEntradaComponent {
     // Definimos o titulo da página.
     this.pageDataService
       .defineTitulo('Caixa de entrada - CMail');
+  }
+
+  filtrarEmailsPorAssunto() {
+    const termoParaFiltroEmMinusculo = this.termoParaFiltro.toLowerCase();
+    return this.emailList.filter(email => {
+      const assunto = email.assunto.toLowerCase()
+      return assunto.includes(termoParaFiltroEmMinusculo)
+    })
   }
 
   //recebe emailID no segundo parâmetro

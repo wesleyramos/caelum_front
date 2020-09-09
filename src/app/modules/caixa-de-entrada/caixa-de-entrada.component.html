@@ -3,19 +3,20 @@
   <main class="mdl-layout__content">
     <div class="page-content">
 
-      <ul *ngIf="mensagemErro" class="mdl-textfield is-invalid">
-        <li *ngFor="let erro of mensagemErro" class="mdl-textfield__error">
-          {{erro.message}}: {{erro.value}}
+      <ul>
+        <li *ngFor="let email of filtrarEmailsPorAssunto()">
+          <cmail-list-item [destinatario]="email.destinatario" [assunto]="email.assunto"
+            [introducaoDoConteudo]="email.introducaoDoConteudo" [dataDeEnvio]="email.dataDeEnvio"
+            (eventoVaiRemover)="handleRemoveEmail($event, email.id)"></cmail-list-item>
         </li>
       </ul>
 
       <div class="mdl-grid">
         <ul>
-          <li *ngFor="let email of emailList">
+          <li *ngFor="let email of emailList | filtroPorAssunto:termoParaFiltro">
             <cmail-list-item [destinatario]="email.destinatario" [assunto]="email.assunto"
               [introducaoDoConteudo]="email.introducaoDoConteudo" [dataDeEnvio]="email.dataDeEnvio"
-              (eventoVaiRemover)="handleRemoveEmail($event, email.id)"
-              ></cmail-list-item>
+              (eventoVaiRemover)="handleRemoveEmail($event, email.id)"></cmail-list-item>
           </li>
         </ul>
       </div>

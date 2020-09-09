@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -17,8 +18,26 @@ export class CaixaDeEntradaComponent {
     assunto: '',
     conteudo: ''
   }
+  mensagemErro = '';
 
   constructor(private emailService: EmailService) { }
+
+  ngOnInit() {
+    this.emailService
+      .listar()
+      .subscribe(
+        //next
+        lista => {
+          this.emailList = lista;
+        },
+        //erro
+        (responseError: HttpErrorResponse) => {
+          this.mensagemErro = responseError.message;
+          console.log("Deu ruim");
+        },
+        //complete (finally)
+      )
+  }
 
   get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;
